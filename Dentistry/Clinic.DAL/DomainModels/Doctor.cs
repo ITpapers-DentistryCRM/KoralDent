@@ -16,7 +16,7 @@ namespace Clinic.DAL.DomainModels
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int DoctorId { get; set; }
 
         public int SpecializationId { get; set; }
 
@@ -24,7 +24,7 @@ namespace Clinic.DAL.DomainModels
 
         [Required]
         [StringLength(500)]
-        public string Info { get; set; }
+        public string DoctorInfo { get; set; }
 
         public virtual Specialization Specialization { get; set; }
 

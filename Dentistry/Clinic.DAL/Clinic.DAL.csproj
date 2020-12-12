@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainModels\Account.cs" />
     <Compile Include="DomainModels\Doctor.cs" />
     <Compile Include="DomainModels\ClinicContext.cs" />
     <Compile Include="DomainModels\Patient.cs" />

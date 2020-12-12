@@ -16,18 +16,19 @@ namespace Clinic.DAL.DomainModels
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int PatientId { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string PatientName { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Phone { get; set; }
+        public string PatientPhone { get; set; }
 
+        [Required]
         [StringLength(50)]
-        public string Email { get; set; }
+        public string PatientEmail { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registration> Registrations { get; set; }

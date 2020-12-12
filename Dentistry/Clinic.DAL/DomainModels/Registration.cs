@@ -16,15 +16,15 @@ namespace Clinic.DAL.DomainModels
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int RegistrationId { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime Date { get; set; }
+        public DateTime RegistrationDate { get; set; }
 
-        public TimeSpan Time { get; set; }
+        public TimeSpan RegistrationTime { get; set; }
 
         [StringLength(300)]
-        public string Comment { get; set; }
+        public string RegistrationComment { get; set; }
 
         public int ServiceId { get; set; }
 

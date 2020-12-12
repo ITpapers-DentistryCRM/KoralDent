@@ -17,19 +17,19 @@ namespace Clinic.DAL.DomainModels
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int ServiceId { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Name { get; set; }
+        public string ServiceName { get; set; }
 
         [Required]
         [StringLength(200)]
-        public string Description { get; set; }
+        public string ServiceDescription { get; set; }
 
-        public TimeSpan Duration { get; set; }
+        public TimeSpan ServiceDuration { get; set; }
 
-        public double Price { get; set; }
+        public double ServicePrice { get; set; }
 
         public int SpecializationId { get; set; }
 

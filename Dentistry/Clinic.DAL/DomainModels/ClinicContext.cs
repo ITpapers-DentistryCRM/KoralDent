@@ -12,6 +12,7 @@ namespace Clinic.DAL.DomainModels
         {
         }
 
+        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Patient> Patients { get; set; }
         public virtual DbSet<Registration> Registrations { get; set; }
@@ -24,6 +25,11 @@ namespace Clinic.DAL.DomainModels
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Account>()
+                .HasMany(e => e.Staffs)
+                .WithRequired(e => e.Account)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<Doctor>()
                 .HasMany(e => e.Registrations)
                 .WithRequired(e => e.Doctor)
@@ -42,7 +48,6 @@ namespace Clinic.DAL.DomainModels
             modelBuilder.Entity<RegistrationStatus>()
                 .HasMany(e => e.Registrations)
                 .WithRequired(e => e.RegistrationStatus)
-                .HasForeignKey(e => e.RegistrationStatusId)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Service>()
