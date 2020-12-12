@@ -14,15 +14,17 @@ namespace Clinic.DAL.DomainModels
             Registrations = new HashSet<Registration>();
         }
 
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int RegistrationStatusId { get; set; }
 
         [Required]
         [StringLength(30)]
-        public string Name { get; set; }
+        public string RegistrationStatusName { get; set; }
 
+        [Required]
         [StringLength(300)]
-        public string Info { get; set; }
+        public string RegistrationStatusInfo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registration> Registrations { get; set; }

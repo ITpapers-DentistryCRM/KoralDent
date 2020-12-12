@@ -10,113 +10,131 @@ USE [Clinic]
 GO
 
 CREATE TABLE [Staff] (
-	Id integer NOT NULL,
-	LastName nvarchar(50) NOT NULL,
-	Name nvarchar(50) NOT NULL,
-	MiddleName nvarchar(50) NOT NULL,
-	Birthday date NOT NULL,
-	Salary float,
+	StaffId integer NOT NULL,
+	AccountId integer NOT NULL,
+	AccountLevel integer NOT NULL,
+	StaffLastName nvarchar(50) NOT NULL,
+	StaffName nvarchar(50) NOT NULL,
+	StaffMiddleName nvarchar(50) NOT NULL,
+	StaffBirthday date NOT NULL,
+	StaffSalary float NOT NULL
+	
   CONSTRAINT [PK_STAFF] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [StaffId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
 CREATE TABLE [Doctor] (
-	Id integer NOT NULL,
+	DoctorId integer NOT NULL,
 	SpecializationId integer NOT NULL,
 	StaffId integer NOT NULL,
-	Info nvarchar(500) NOT NULL
+	DoctorInfo nvarchar(500) NOT NULL
   CONSTRAINT [PK_DOCTOR] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [DoctorId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
 CREATE TABLE [Specialization] (
-	Id integer NOT NULL,
-	Name nvarchar(50) NOT NULL,
+	SpecializationId integer NOT NULL,
+	SpecializationName nvarchar(50) NOT NULL,
   CONSTRAINT [PK_SPECIALIZATION] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [SpecializationId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
 CREATE TABLE [Patient] (
-	Id integer NOT NULL,
-	Name nvarchar(50) NOT NULL,
-	Phone nvarchar(50) NOT NULL,
-	Email nvarchar(50),
+	PatientId integer NOT NULL,
+	PatientName nvarchar(50) NOT NULL,
+	PatientPhone nvarchar(50) NOT NULL,
+	PatientEmail nvarchar(50) NOT NULL,
   CONSTRAINT [PK_PATIENT] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [PatientId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
 CREATE TABLE [Service] (
-	Id integer NOT NULL,
-	Name nvarchar(50) NOT NULL,
-	Description nvarchar(200) NOT NULL,
-	Duration time NOT NULL,
-	Price float NOT NULL,
+	ServiceId integer NOT NULL,
+	ServiceName nvarchar(50) NOT NULL,
+	ServiceDescription nvarchar(200) NOT NULL,
+	ServiceDuration time NOT NULL,
+	ServicePrice float NOT NULL,
 	SpecializationId integer NOT NULL,
   CONSTRAINT [PK_SERVICE] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [ServiceId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
 CREATE TABLE [RegistrationStatus] (
-	Id integer NOT NULL,
-	Name nvarchar(30) NOT NULL,
-	Info nvarchar(300)
+	RegistrationStatusId integer NOT NULL,
+	RegistrationStatusName nvarchar(30) NOT NULL,
+	RegistrationStatusInfo nvarchar(300) NOT NULL
   CONSTRAINT [PK_RegistrationStatus] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [RegistrationStatusId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
 CREATE TABLE [Registration] (
-	Id integer NOT NULL,
-	Date date NOT NULL,
-	Time time NOT NULL,
-	Comment nvarchar(300),
+	RegistrationId integer NOT NULL,
+	RegistrationDate date NOT NULL,
+	RegistrationTime time NOT NULL,
+	RegistrationComment nvarchar(300),
 	ServiceId integer NOT NULL,
 	DoctorId integer NOT NULL,
 	PatientId integer NOT NULL,
 	RegistrationStatusId integer NOT NULL 
   CONSTRAINT [PK_REGISTRATION] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [RegistrationId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
 CREATE TABLE [Registration_Service] (
-	Id integer NOT NULL,
+	Registration_ServiceId integer NOT NULL,
 	RegistrationId integer NOT NULL,
 	ServiceId integer NOT NULL
 
   CONSTRAINT [PK_Registration_Service] PRIMARY KEY CLUSTERED
   (
-  [Id] ASC
+  [Registration_ServiceId] ASC
   ) WITH (IGNORE_DUP_KEY = OFF)
 
 )
 GO
+CREATE TABLE [Account] (
+	AccountId integer NOT NULL,
+	AccountLogin nvarchar(50) NOT NULL,
+	AccountPassword nvarchar(50) NOT NULL
+  CONSTRAINT [PK_Account] PRIMARY KEY CLUSTERED
+  (
+  [AccountId] ASC
+  ) WITH (IGNORE_DUP_KEY = OFF)
 
-ALTER TABLE [Doctor] WITH CHECK ADD CONSTRAINT [Doctor_fk0] FOREIGN KEY ([SpecializationId]) REFERENCES [Specialization]([Id])
+)
+GO
+ALTER TABLE [Staff] WITH CHECK ADD CONSTRAINT [Staff_fk0] FOREIGN KEY ([AccountId]) REFERENCES [Account]([AccountId])
+--ON UPDATE CASCADE
+GO
+ALTER TABLE [Staff] CHECK CONSTRAINT [Staff_fk0]
+GO
+ALTER TABLE [Doctor] WITH CHECK ADD CONSTRAINT [Doctor_fk0] FOREIGN KEY ([SpecializationId]) REFERENCES [Specialization]([SpecializationId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Doctor] CHECK CONSTRAINT [Doctor_fk0]
 GO
-ALTER TABLE [Doctor] WITH CHECK ADD CONSTRAINT [Doctor_fk1] FOREIGN KEY ([StaffId]) REFERENCES [Staff]([Id])
+ALTER TABLE [Doctor] WITH CHECK ADD CONSTRAINT [Doctor_fk1] FOREIGN KEY ([StaffId]) REFERENCES [Staff]([StaffId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Doctor] CHECK CONSTRAINT [Doctor_fk1]
@@ -124,38 +142,38 @@ GO
 
 
 
-ALTER TABLE [Service] WITH CHECK ADD CONSTRAINT [Service_fk0] FOREIGN KEY ([SpecializationId]) REFERENCES [Specialization]([Id])
+ALTER TABLE [Service] WITH CHECK ADD CONSTRAINT [Service_fk0] FOREIGN KEY ([SpecializationId]) REFERENCES [Specialization]([SpecializationId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Service] CHECK CONSTRAINT [Service_fk0]
 GO
 
-ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk0] FOREIGN KEY ([ServiceId]) REFERENCES [Service]([Id])
+ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk0] FOREIGN KEY ([ServiceId]) REFERENCES [Service]([ServiceId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Registration] CHECK CONSTRAINT [Registration_fk0]
 GO
-ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk1] FOREIGN KEY ([DoctorId]) REFERENCES [Doctor]([Id])
+ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk1] FOREIGN KEY ([DoctorId]) REFERENCES [Doctor]([DoctorId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Registration] CHECK CONSTRAINT [Registration_fk1]
 GO
-ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk2] FOREIGN KEY ([PatientId]) REFERENCES [Patient]([Id])
+ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk2] FOREIGN KEY ([PatientId]) REFERENCES [Patient]([PatientId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Registration] CHECK CONSTRAINT [Registration_fk2]
 GO
-ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk3] FOREIGN KEY ([RegistrationStatusId]) REFERENCES [RegistrationStatus]([Id])
+ALTER TABLE [Registration] WITH CHECK ADD CONSTRAINT [Registration_fk3] FOREIGN KEY ([RegistrationStatusId]) REFERENCES [RegistrationStatus]([RegistrationStatusId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Registration] CHECK CONSTRAINT [Registration_fk3]
 GO
-ALTER TABLE [Registration_Service] WITH CHECK ADD CONSTRAINT [Registration_Service_fk0] FOREIGN KEY ([RegistrationId]) REFERENCES [Registration]([Id])
+ALTER TABLE [Registration_Service] WITH CHECK ADD CONSTRAINT [Registration_Service_fk0] FOREIGN KEY ([RegistrationId]) REFERENCES [Registration]([RegistrationId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Registration_Service] CHECK CONSTRAINT [Registration_Service_fk0]
 GO
-ALTER TABLE [Registration_Service] WITH CHECK ADD CONSTRAINT [Registration_Service_fk1] FOREIGN KEY ([ServiceId]) REFERENCES [Service]([Id])
+ALTER TABLE [Registration_Service] WITH CHECK ADD CONSTRAINT [Registration_Service_fk1] FOREIGN KEY ([ServiceId]) REFERENCES [Service]([ServiceId])
 --ON UPDATE CASCADE
 GO
 ALTER TABLE [Registration_Service] CHECK CONSTRAINT [Registration_Service_fk1]
@@ -164,6 +182,8 @@ GO
 --=============================================================================
 
 create proc AddStaff
+	@aId integer,
+	@aLvl integer,
 	@ln nvarchar(50),
 	@n nvarchar(50),
 	@mn nvarchar(50),
@@ -172,7 +192,7 @@ create proc AddStaff
 
 as
 begin
-	insert Staff(LastName,Name,MiddleName,Birthday,Salary) values (@ln,@n,@mn,@b,@s)
+	insert Staff(AccountId,AccountLevel,StaffLastName,StaffName,StaffMiddleName,StaffBirthday,StaffSalary) values (@aId,@aLvl,@ln,@n,@mn,@b,@s)
 end
 go
 
@@ -181,7 +201,7 @@ create proc AddSpecialization
 
 as
 begin
-	insert Specialization(Name) values (@n)
+	insert Specialization(SpecializationName) values (@n)
 end
 go
 
@@ -193,7 +213,7 @@ create proc AddDoctor
 
 as
 begin
-	insert Doctor(SpecializationId,StaffId, Info) values (@s,@st,@i)
+	insert Doctor(SpecializationId,StaffId, DoctorInfo) values (@s,@st,@i)
 end
 go
 
@@ -205,7 +225,7 @@ create proc AddPatient
 
 as
 begin
-	insert Patient(Name,Phone,Email) values (@n,@p,@e)
+	insert Patient(PatientName,PatientPhone,PatientEmail) values (@n,@p,@e)
 end
 go
 
@@ -218,7 +238,7 @@ create proc AddService
 
 as
 begin
-	insert Service(Name,Description,Duration,Price,SpecializationId) values (@n,@des,@d,@p,@s)
+	insert Service(ServiceName,ServiceDescription,ServiceDuration,ServicePrice,SpecializationId) values (@n,@des,@d,@p,@s)
 end
 go
 
@@ -232,7 +252,7 @@ create proc AddRegistration
 
 as
 begin
-	insert Registration(Date,Time,Comment,ServiceId,DoctorId,PatientId) values (@d,@t,@c,@s,@doc,@p)
+	insert Registration(RegistrationDate,RegistrationTime,RegistrationComment,ServiceId,DoctorId,PatientId) values (@d,@t,@c,@s,@doc,@p)
 end
 go
 
@@ -243,6 +263,14 @@ create proc AddRegistration_Service
 as
 begin
 	insert Registration_Service(RegistrationId,ServiceId) values (@r,@s)
+end
+go
+create proc AddAccount
+	@l nvarchar(50),
+	@p nvarchar(50)
+as
+begin
+	insert Account(AccountLogin,AccountPassword) values (@l,@p)
 end
 go
 

@@ -9,7 +9,7 @@ namespace Clinic.DAL.DomainModels
     public partial class Registration_Service
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Id { get; set; }
+        public int Registration_ServiceId { get; set; }
 
         public int RegistrationId { get; set; }
 
