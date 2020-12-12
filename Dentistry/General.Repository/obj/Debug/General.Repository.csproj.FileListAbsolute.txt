@@ -1,0 +1,12 @@
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\bin\Debug\General.Repository.dll.config
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\bin\Debug\General.Repository.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\bin\Debug\General.Repository.pdb
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\bin\Debug\EntityFramework.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\bin\Debug\EntityFramework.xml
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\obj\Debug\General.Repository.csprojAssemblyReference.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\obj\Debug\General.Repository.csproj.CoreCompileInputs.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\obj\Debug\General.Repository.csproj.CopyComplete
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\obj\Debug\General.Repository.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\General.Repository\obj\Debug\General.Repository.pdb

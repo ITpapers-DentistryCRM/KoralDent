@@ -1,0 +1,12 @@
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\bin\Debug\Clinic.DAL.dll.config
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\bin\Debug\Clinic.DAL.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\bin\Debug\Clinic.DAL.pdb
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\bin\Debug\EntityFramework.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\bin\Debug\EntityFramework.xml
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\obj\Debug\Clinic.DAL.csprojAssemblyReference.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\obj\Debug\Clinic.DAL.csproj.CoreCompileInputs.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\obj\Debug\Clinic.DAL.csproj.CopyComplete
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\obj\Debug\Clinic.DAL.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.DAL\obj\Debug\Clinic.DAL.pdb
