@@ -1,0 +1,14 @@
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\bin\Debug\Wpf.Server.exe.config
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\bin\Debug\Wpf.Server.exe
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\bin\Debug\Wpf.Server.pdb
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\MainWindow.g.cs
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\App.g.cs
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server_MarkupCompile.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server_MarkupCompile.lref
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\MainWindow.baml
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server.g.resources
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server.Properties.Resources.resources
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server.csproj.GenerateResource.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server.csproj.CoreCompileInputs.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server.exe
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Wpf.Server\obj\Debug\Wpf.Server.pdb
