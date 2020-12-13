@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C3252A0C-2704-44C1-AB96-409A13786733}</ProjectGuid>
+    <ProjectGuid>{0437E419-8ADA-4605-8148-CB0AAFE24FFC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Wpf.Administrator</RootNamespace>
-    <AssemblyName>Wpf.Administrator</AssemblyName>
+    <RootNamespace>Wpf.Patient</RootNamespace>
+    <AssemblyName>Wpf.Patient</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
