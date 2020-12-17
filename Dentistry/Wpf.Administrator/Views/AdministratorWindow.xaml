@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduling"
-        xmlns:dxs="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
+
         xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
         xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
         xmlns:vm="clr-namespace:Wpf.Administrator.ViewModels"
@@ -16,6 +16,7 @@
         Title="Administrator" Height="700" Width="900">
     <!--<dxr:DXRibbonWindow.Resources>
         <dxsch:SchedulerCommands x:Key="commands"/>
+    xmlns:dxsch="http://schemas.devexpress.com/winfx/2008/xaml/scheduler"
     </dxr:DXRibbonWindow.Resources>-->
 
     <Window.Resources>
@@ -27,9 +28,49 @@
     </Window.Resources>
     
     <Grid Background="WhiteSmoke" DataContext="{Binding Source={StaticResource data}}">
-        <dxsch:SchedulerControl x:Name="scheduler"  WorkDays="EveryDay"
+        <dxsch:SchedulerControl x:Name="scheduler"  WorkDays="EveryDay" WorkTime="08:00:00-21:00:00"
             ActiveViewIndex="1"
             CommandBarStyle="Ribbon" FirstDayOfWeek="Monday">
+
+            <dxsch:DayView x:Name="dayView"
+                    Caption="Day View"
+                    ResourcesPerPage="5"
+                    ShowAllDayArea="False"
+                    ShowWorkTimeOnly="False"
+                    SnapToCellsMode="Never"
+                    TimeScale="00:15:00" />
+            <!--<dxsch:WorkWeekView x:Name="workWeekView"
+                Caption="Work Week View"
+                ResourcesPerPage="5"
+                ShowAllDayArea="False"
+                ShowWorkTimeOnly="False"
+                SnapToCellsMode="Never"
+                TimeScale="00:15:00" />-->
+            <dxsch:WeekView x:Name="weekView"
+                Caption="Week View"
+                ResourcesPerPage="5"
+                ShowAllDayArea="False"
+                ShowWorkTimeOnly="False"
+                SnapToCellsMode="Never"
+                TimeScale="00:15:00" />
+            <dxsch:MonthView x:Name="monthView"
+                WeekCount="4" 
+                Caption="Month View"/>
+            <dxsch:TimelineView x:Name="timelineView">
+                <dxsch:TimelineView.TimeScales>
+                    <dxsch:TimeScaleYear x:Name="scaleYear" IsEnabled="False"/>
+                    <dxsch:TimeScaleQuarter x:Name="scaleQuarter" IsEnabled="False"/>
+                    <dxsch:TimeScaleMonth x:Name="scaleMonth" IsEnabled="False"/>
+                    <dxsch:TimeScaleWeek x:Name="scaleWeek" IsEnabled="True"/>
+                    <dxsch:TimeScaleDay x:Name="scaleDay" IsEnabled="True"/>
+                    <dxsch:TimeScaleWorkDay x:Name="scaleWorkDay" IsEnabled="False"/>
+                    <dxsch:TimeScaleHour x:Name="scaleHour" IsEnabled="False"/>
+                    <dxsch:TimeScaleWorkHour x:Name="scaleWorkHour" IsEnabled="False"/>
+                    <dxsch:FixedTimeScale x:Name="scale15minutes" Scale="0:15:0" IsEnabled="False"/>
+                </dxsch:TimelineView.TimeScales>
+            </dxsch:TimelineView>
+            <dxsch:ListView x:Name="listView"
+                            Caption="List View" ></dxsch:ListView>
 
             <dxsch:SchedulerControl.DataSource>
                 <dxsch:DataSource AppointmentsSource="{Binding Appointments}"
