@@ -22,6 +22,7 @@ namespace Clinic.BLL.Infrastructure
             builder.RegisterType(typeof(StaffRepository))
                             .As(typeof(IGenericRepository<Staff, int>));
 
+
             builder.RegisterType(typeof(SpecializationService))
                             .As(typeof(IGenericService<SpecializationDTO, int>));
             builder.RegisterType(typeof(SpecializationRepository))

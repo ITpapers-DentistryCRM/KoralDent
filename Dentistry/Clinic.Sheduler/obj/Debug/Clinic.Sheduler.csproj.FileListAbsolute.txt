@@ -1,0 +1,12 @@
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\bin\Debug\Clinic.Sheduler.dll.config
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\bin\Debug\Clinic.Sheduler.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\bin\Debug\Clinic.Sheduler.pdb
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\bin\Debug\EntityFramework.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\bin\Debug\EntityFramework.xml
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\obj\Debug\Clinic.Sheduler.csprojAssemblyReference.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\obj\Debug\Clinic.Sheduler.csproj.CoreCompileInputs.cache
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\obj\Debug\Clinic.Sheduler.csproj.CopyComplete
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\obj\Debug\Clinic.Sheduler.dll
+C:\Users\vladi\source\repos\CourseWork\Dentistry\Clinic.Sheduler\obj\Debug\Clinic.Sheduler.pdb

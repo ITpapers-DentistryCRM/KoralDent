@@ -24,9 +24,10 @@ namespace Clinic.BLL.Services
             {
                 cfg.AddExpressionMapping();
                 cfg.CreateMap<Registration, RegistrationDTO>()
-                              .ForMember("Doctor", opt => opt.MapFrom(g => g.Doctor))
-                              .ForMember("Patient", opt => opt.MapFrom(g => g.Patient))
-                              .ForMember("Service", opt => opt.MapFrom(g => g.Service));
+                              //.ForMember("Doctor", opt => opt.MapFrom(g => g.Doctor))
+                              //.ForMember("Patient", opt => opt.MapFrom(g => g.Patient))
+                              .ForMember("RegistrationStatusName", opt => opt.MapFrom(g => g.RegistrationStatus.RegistrationStatusName))
+                              .ForMember("RegistrationStatusInfo", opt => opt.MapFrom(g => g.RegistrationStatus.RegistrationStatusInfo)); 
                 cfg.CreateMap<RegistrationDTO, Registration>();
 
             }).CreateMapper();

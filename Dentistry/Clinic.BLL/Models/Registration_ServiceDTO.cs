@@ -12,10 +12,10 @@ namespace Clinic.BLL.Models
         public int Registration_ServiceId { get; set; }
 
         public int RegistrationId { get; set; }
-        public RegistrationDTO Registration { get; set; }
+        //public RegistrationDTO Registration { get; set; }
 
         public int ServiceId { get; set; }
-        public ServiceDTO Service { get; set; }
+        //public ServiceDTO Service { get; set; }
 
     }
 }

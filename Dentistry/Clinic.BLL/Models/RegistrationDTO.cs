@@ -22,16 +22,15 @@ namespace Clinic.BLL.Models
         [StringLength(300)]
         public string RegistrationComment { get; set; }
 
-        public int ServiceId { get; set; }
-        public ServiceDTO  Service { get; set; }
-
         public int DoctorId { get; set; }
-        public DoctorDTO Doctor { get; set; }
+        //public DoctorDTO Doctor { get; set; }
 
         public int PatientId { get; set; }
-        public PatientDTO Patient { get; set; }
+        //public PatientDTO Patient { get; set; }
 
         public int RegistrationStatusId { get; set; }
+        public string RegistrationStatusName { get; set; }
+        public string RegistrationStatusInfo { get; set; }
 
     }
 }

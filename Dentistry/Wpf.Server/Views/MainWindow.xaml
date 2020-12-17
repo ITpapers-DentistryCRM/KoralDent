@@ -1,0 +1,59 @@
+﻿<Window x:Class="Wpf.Server.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="clr-namespace:Wpf.Server.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf.Server"
+        xmlns:dialog="clr-namespace:Wpf.Server.Infrastructure.DialogService"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="600">
+    <Window.Resources>
+        <ObjectDataProvider ObjectType="{x:Type vm:MainViewModel}" x:Key="data">
+            <ObjectDataProvider.ConstructorParameters>
+                <dialog:DialogServiceWpf></dialog:DialogServiceWpf>
+            </ObjectDataProvider.ConstructorParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <Grid Background="WhiteSmoke" DataContext="{Binding Source={StaticResource data}}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="266*"/>
+            <ColumnDefinition Width="529*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="2" Margin="0,0,0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+
+            </Grid.ColumnDefinitions>
+            <Button Background="MediumSeaGreen" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" FontSize="18" Content="Run" Command="{Binding RunServer_Click}" ></Button>
+            <Button Background="IndianRed" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" FontSize="18" Content="Stop" Command="{Binding StopServer_Click}" ></Button>
+            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" FontSize="18" Text="IP Address:   "></TextBlock>
+                <TextBox VerticalAlignment="Center" Width="100" FontSize="18" Text="{Binding TxtIPAddress}"></TextBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock VerticalAlignment="Center" FontSize="18" Text="Port:   "></TextBlock>
+                <TextBox VerticalAlignment="Center" Width="100" FontSize="18" Text="{Binding TxtPort}"></TextBox>
+            </StackPanel>
+
+        </Grid>
+        <Separator Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Height="1" Margin="0,2,0,0"/>
+        
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0.5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="433*"/>
+                <ColumnDefinition Width="162*"/>
+            </Grid.ColumnDefinitions>
+            <Separator Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Height="3" Margin="0,0,0,0.5"/>
+            <TextBlock Background="FloralWhite" FontWeight="Bold" Foreground="Navy" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Grid.Column="1" Text="{Binding CurrentTime}"></TextBlock>
+        </Grid>
+    </Grid>
+</Window>

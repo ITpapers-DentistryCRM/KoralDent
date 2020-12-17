@@ -25,8 +25,9 @@ namespace Clinic.BLL.Services
             {
                 cfg.AddExpressionMapping();
                 cfg.CreateMap<Registration_Service, Registration_ServiceDTO>()
-                              .ForMember("Registration", opt => opt.MapFrom(g => g.Registration))
-                              .ForMember("Service", opt => opt.MapFrom(g => g.Service));
+                              //.ForMember("Registration", opt => opt.MapFrom(g => g.Registration))
+                              //.ForMember("Service", opt => opt.MapFrom(g => g.Service))
+                              ;
                 cfg.CreateMap<Registration_ServiceDTO, Registration_Service>();
 
             }).CreateMapper();

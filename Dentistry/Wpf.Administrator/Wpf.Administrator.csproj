@@ -35,7 +35,44 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Data_yesfree.18.2.5\lib\net40\DevExpress.Data.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Images.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Images_yesfree.18.2.5\lib\net40\DevExpress.Images.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Mvvm.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Mvvm_yesfree.18.2.5\lib\net40\DevExpress.Mvvm.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v18.2.Core, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Pdf.Core_yesfree.18.2.5\lib\net40\DevExpress.Pdf.v18.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v18.2.Core, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Printing.Core_yesfree.18.2.5\lib\net40\DevExpress.Printing.v18.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Core.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Xpf.Core_yesfree.18.2.5\lib\net40\DevExpress.Xpf.Core.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Xpf.Grid_yesfree.18.2.5\lib\net40\DevExpress.Xpf.Grid.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Grid.v18.2.Core, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Xpf.Grid.Core_yesfree.18.2.5\lib\net40\DevExpress.Xpf.Grid.v18.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.LayoutControl.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Xpf.LayoutControl_yesfree.18.2.5\lib\net40\DevExpress.Xpf.LayoutControl.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Ribbon.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Xpf.Ribbon_yesfree.18.2.5\lib\net40\DevExpress.Xpf.Ribbon.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpf.Scheduling.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.Xpf.Scheduling_yesfree.18.2.5\lib\net40\DevExpress.Xpf.Scheduling.v18.2.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v18.2.Core, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
+      <HintPath>..\packages\YshXaf.DevExpress.XtraScheduler.Core_yesfree.18.2.5\lib\net40\DevExpress.XtraScheduler.v18.2.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,7 +92,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="ViewModels\AdministratorViewModel.cs" />
+    <Compile Include="Views\NewAppoinmentWindow.xaml.cs">
+      <DependentUpon>NewAppoinmentWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AdministratorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,10 +104,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Infrastructure\DialogService\DialogResult.cs" />
+    <Compile Include="Infrastructure\DialogService\DialogServiceWpf.cs" />
+    <Compile Include="Infrastructure\DialogService\IDialogService.cs" />
+    <Compile Include="Infrastructure\RelayCommand.cs" />
+    <Compile Include="Views\AdministratorWindow.xaml.cs">
+      <DependentUpon>AdministratorWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\NewAppoinmentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -86,6 +135,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -93,6 +143,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Clinic.Sheduler\Clinic.Sheduler.csproj">
+      <Project>{39c08920-c31e-4863-a7d6-c6f6e7094e73}</Project>
+      <Name>Clinic.Sheduler</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

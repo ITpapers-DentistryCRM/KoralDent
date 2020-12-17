@@ -51,11 +51,6 @@ namespace Clinic.DAL.DomainModels
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Service>()
-                .HasMany(e => e.Registrations)
-                .WithRequired(e => e.Service)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Service>()
                 .HasMany(e => e.Registration_Service)
                 .WithRequired(e => e.Service)
                 .WillCascadeOnDelete(false);

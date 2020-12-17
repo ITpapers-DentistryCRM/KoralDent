@@ -26,8 +26,6 @@ namespace Clinic.DAL.DomainModels
         [StringLength(300)]
         public string RegistrationComment { get; set; }
 
-        public int ServiceId { get; set; }
-
         public int DoctorId { get; set; }
 
         public int PatientId { get; set; }
@@ -37,8 +35,6 @@ namespace Clinic.DAL.DomainModels
         public virtual Doctor Doctor { get; set; }
 
         public virtual Patient Patient { get; set; }
-
-        public virtual Service Service { get; set; }
 
         public virtual RegistrationStatus RegistrationStatus { get; set; }
 
