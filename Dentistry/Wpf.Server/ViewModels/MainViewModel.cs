@@ -33,7 +33,7 @@ namespace Wpf.Server.ViewModels
         }
         IDialogService dialogService;
 
-        
+
         TcpListener listener;
 
         private string _txtIPAddress;
@@ -51,6 +51,16 @@ namespace Wpf.Server.ViewModels
             set
             {
                 _txtPort = value;
+                OnPropertyChanged();
+            }
+        }
+        private string _logs;
+        public string Logs
+        {
+            get { return _logs; }
+            set
+            {
+                _logs = value;
                 OnPropertyChanged();
             }
         }
@@ -121,6 +131,7 @@ namespace Wpf.Server.ViewModels
             IGenericService<ServiceDTO, int> services = container.Resolve<IGenericService<ServiceDTO, int>>();
             IGenericService<PatientDTO, int> patients = container.Resolve<IGenericService<PatientDTO, int>>();
             IGenericService<DoctorDTO, int> doctors = container.Resolve<IGenericService<DoctorDTO, int>>();
+
             return await Task<List<Appointment>>.Factory.StartNew(() => {
                 List<Appointment> appointments = new List<Appointment>();
                 foreach (var item in collection)
@@ -179,10 +190,11 @@ namespace Wpf.Server.ViewModels
         }
         private async void ExecuteRunServerCommand(object parameter)
         {
-            List<Appointment> appoinments = await GetAppointments();
+            List<Appointment> appoinments = null;
             
             try
             {
+                Logs += $"{DateTime.Now,-15} - Server starting...\n";
                 IPAddress localaddr = IPAddress.Parse(TxtIPAddress);
                 int port = Convert.ToInt32(TxtPort);
                 listener = new TcpListener(localaddr, port);
@@ -199,13 +211,15 @@ namespace Wpf.Server.ViewModels
 
             try
             {
-
+                Logs += $"{DateTime.Now,-15} - Server started without errors.\n";
+                Logs += $"{DateTime.Now,-15} - Server listening...\n";
                 byte[] data;
-                while (true)
+                appoinments = await GetAppointments();
+                while (isServerShut == false)
                 {
                     //TcpClient cl = listener.AcceptTcpClientAsync();
                     var client = await listener.AcceptTcpClientAsync();
-
+                    Logs += $"{DateTime.Now,-15} - Server accept ADMINISTRATOR - {client.Client.RemoteEndPoint}\n";
                     var binFormatter = new BinaryFormatter();
                     var mStream = new MemoryStream();
                     binFormatter.Serialize(mStream, appoinments);
@@ -225,16 +239,25 @@ namespace Wpf.Server.ViewModels
                     //lbMessage.Items.Add($"from client {client.Client.RemoteEndPoint} - message {builder.ToString()}");
                     //dialogService.MessageBoxYesNo(data.Length.ToString());
                     //var data1 = Encoding.Unicode.GetBytes(builder.ToString().ToUpper());
+                    Logs += $"{DateTime.Now,-15} - Server writing to ADMINISTRATOR - {client.Client.RemoteEndPoint}\n";
                     await stream.WriteAsync(data, 0, data.Length);
-
+                    Logs += $"{DateTime.Now,-15} - Server close connection with ADMINISTRATOR - {client.Client.RemoteEndPoint}\n";
 
 
                 }
-
             }
-            catch (SocketException exc)
+            catch (Exception exc)
             {
-                dialogService.MessageBoxOkError(exc.Message, "SERVER ERROR!");
+                if(isServerShut)
+                {
+                    Logs += $"{DateTime.Now,-15} - Server finished without errors.\n";
+                }
+                else
+                {
+                    dialogService.MessageBoxOkError(exc.Message, "SERVER ERROR!");
+                    Logs += $"{DateTime.Now,-15} - Server finished with ERROR: {exc.Message}\n";
+                }
+                
 
             }
         }
@@ -253,8 +276,12 @@ namespace Wpf.Server.ViewModels
         }
         private void ExecuteStopServerCommand(object parameter)
         {
-            isServerShut = true;
-
+            if(dialogService.MessageBoxYesNo("Do you really want to close server?","Server closing...") == DialogResult.Yes)
+            {
+                isServerShut = true;
+                listener.Stop();
+            }
+            
         }
     }
 }

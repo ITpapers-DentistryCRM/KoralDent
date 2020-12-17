@@ -11,6 +11,10 @@ namespace Wpf.Administrator.Infrastructure.DialogService
 
     public class DialogServiceWpf : IDialogService
     {
+        public DialogServiceWpf()
+        {
+
+        }
         public string FilePath { get; set; }
         public bool OpenFileDialog()
         {

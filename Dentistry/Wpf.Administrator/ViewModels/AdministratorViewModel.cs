@@ -13,6 +13,8 @@ using System.Windows;
 using System.Net.Sockets;
 using Clinic.Sheduler.Models;
 using System.Runtime.Serialization.Formatters.Binary;
+using Wpf.Administrator.Infrastructure;
+using System.Windows.Input;
 
 namespace Wpf.Administrator.ViewModels
 {
@@ -69,10 +71,28 @@ namespace Wpf.Administrator.ViewModels
                 OnPropertyChanged();
             }
         }
-        public void About_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        //public void About_ItemClick(object sender, DevExpress.Xpf.Bars.ItemClickEventArgs e)
+        //{
+        //    DXMessageBox.Show(@"This example demonstrates how to customize the WPF Scheduler's integrated ribbon UI. Use the Scheduler's RibbonActions collection to create, remove or modify ribbon elements.",
+        //        "Scheduler Ribbon Example", MessageBoxButton.OK, MessageBoxImage.Information);
+        //}
+        RelayCommand _About_ItemClick;
+
+        public ICommand About_ItemClick
         {
+            get
+            {
+                if (_About_ItemClick == null)
+                    _About_ItemClick = new RelayCommand(ExecuteStopServerCommand, o => true);
+                return _About_ItemClick;
+            }
+        }
+        private void ExecuteStopServerCommand(object parameter)
+        {
+            dialogService.MessageBoxYesNo("!!!");
             DXMessageBox.Show(@"This example demonstrates how to customize the WPF Scheduler's integrated ribbon UI. Use the Scheduler's RibbonActions collection to create, remove or modify ribbon elements.",
                 "Scheduler Ribbon Example", MessageBoxButton.OK, MessageBoxImage.Information);
+
         }
 
 

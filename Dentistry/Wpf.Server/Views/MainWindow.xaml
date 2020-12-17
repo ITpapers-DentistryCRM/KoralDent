@@ -7,19 +7,16 @@
         xmlns:local="clr-namespace:Wpf.Server"
         xmlns:dialog="clr-namespace:Wpf.Server.Infrastructure.DialogService"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="600">
+        Title="Server" Height="450" Width="600">
     <Window.Resources>
-        <ObjectDataProvider ObjectType="{x:Type vm:MainViewModel}" x:Key="data">
+        <ObjectDataProvider IsAsynchronous="True" ObjectType="{x:Type vm:MainViewModel}" x:Key="data">
             <ObjectDataProvider.ConstructorParameters>
                 <dialog:DialogServiceWpf></dialog:DialogServiceWpf>
             </ObjectDataProvider.ConstructorParameters>
         </ObjectDataProvider>
     </Window.Resources>
-    <Grid Background="WhiteSmoke" DataContext="{Binding Source={StaticResource data}}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="266*"/>
-            <ColumnDefinition Width="529*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="LightSteelBlue" DataContext="{Binding Source={StaticResource data}}">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="12*"/>
@@ -46,14 +43,14 @@
 
         </Grid>
         <Separator Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Height="1" Margin="0,2,0,0"/>
-        
+        <TextBox Background="AliceBlue" Grid.Row="1" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" AcceptsReturn="True" AllowDrop="True" Text="{Binding Logs}"></TextBox>
         <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0.5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="433*"/>
                 <ColumnDefinition Width="162*"/>
             </Grid.ColumnDefinitions>
             <Separator Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Height="3" Margin="0,0,0,0.5"/>
-            <TextBlock Background="FloralWhite" FontWeight="Bold" Foreground="Navy" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Grid.Column="1" Text="{Binding CurrentTime}"></TextBlock>
+            <TextBlock FontWeight="Bold" Foreground="Navy" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Grid.Column="1" Text="{Binding CurrentTime}"></TextBlock>
         </Grid>
     </Grid>
 </Window>

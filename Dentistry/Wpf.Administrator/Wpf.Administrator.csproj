@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v18.2, Version=18.2.5.0, Culture=neutral, PublicKeyToken=1b6562238b11e6dd, processorArchitecture=MSIL">
       <HintPath>..\packages\YshXaf.DevExpress.Data_yesfree.18.2.5\lib\net40\DevExpress.Data.v18.2.dll</HintPath>
@@ -149,6 +152,9 @@
       <Project>{39c08920-c31e-4863-a7d6-c6f6e7094e73}</Project>
       <Name>Clinic.Sheduler</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
