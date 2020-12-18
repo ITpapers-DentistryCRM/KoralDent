@@ -65,11 +65,11 @@ namespace Wpf.Server.ViewModels
             }
         }
 
-        private string _currentTime = $"{new string(' ',20)}";
+        private string _currentTime = DateTime.Now.ToLongTimeString();
 
-        public DispatcherTimer _timer;
+        public System.Timers.Timer timer;
 
-        public string CurrentTime
+        public string CurrentTime 
         {
             get
             {
@@ -101,15 +101,17 @@ namespace Wpf.Server.ViewModels
             TxtIPAddress = ConfigurationManager.AppSettings["IPAddress"];
             TxtPort = ConfigurationManager.AppSettings["Port"];
 
-
-            _timer = new DispatcherTimer(DispatcherPriority.Render);
-            _timer.Interval = TimeSpan.FromSeconds(1);
-            _timer.Tick += (sender, args) =>
+            timer = new System.Timers.Timer();
+            timer.Elapsed += (sender, args) =>
             {
                 CurrentTime = DateTime.Now.ToLongTimeString();
-            };
-            _timer.Start();
+            }
+            ;
+            timer.Interval = 1000;
+            timer.Enabled = true;
+            timer.Start();
 
+            
 
 
         }
@@ -142,11 +144,13 @@ namespace Wpf.Server.ViewModels
                     DoctorDTO doctor = doctors.Get(item.DoctorId);
                     string sers = "Services:\n";
                     double totalPrice = 0;
+                    List<ServiceDTO> Services = new List<ServiceDTO>();
                     foreach (var rs in registration_services_collection)
                     {
                         if(rs.RegistrationId == item.RegistrationId)
                         {
                             ServiceDTO service = services.Get(rs.ServiceId);
+                            Services.Add(service);
                             timeSpan += service.ServiceDuration;
                             sers += $"{service.ServiceName}  -> ${service.ServicePrice}\n";
                             totalPrice += service.ServicePrice;
@@ -154,7 +158,6 @@ namespace Wpf.Server.ViewModels
                         
                     }
                     string descr = $"Doctor: {doctor.StaffLastName} {doctor.StaffName} {doctor.StaffMiddleName}\n\n" +
-                                     $"Patient: {patient.PatientName} {patient.PatientPhone} {patient.PatientEmail}\n\n" +
                                      $"{sers}\n\n" +
                                      $"Total Price: {totalPrice}\n\n" +
                                      $"Comment: {item.RegistrationComment}";
@@ -166,15 +169,44 @@ namespace Wpf.Server.ViewModels
                         Subject = $"{doctor.StaffLastName} - {patient.PatientName}",
                         Description = descr,
                         AppointmentType = 0,
-                        Label =6,
+                        Label = 6,
                         RecurrenceInfo = "",
-                        ResourceId=0
+                        ResourceId = doctor.StaffId,
+                        PatientName = patient.PatientName,
+                        PatientPhone = patient.PatientPhone,
+                        PatientEmail = patient.PatientEmail,
+                        Services = Services
                     });
 
                 }
                 return appointments;
             });
             
+        }
+        private async Task<List<Resource>> GetResources()
+        {
+
+            Autofac.IContainer container = BuildContainer();
+            IGenericService<DoctorDTO, int> doctors = container.Resolve<IGenericService<DoctorDTO, int>>();
+            IGenericService<StaffDTO, int> staffs = container.Resolve<IGenericService<StaffDTO, int>>();
+            var docs = doctors.GetAll();
+            var stfs = staffs.GetAll();
+            return await Task<List<Resource>>.Factory.StartNew(() => {
+                List<Resource> resources = new List<Resource>();
+                foreach (var item in stfs)
+                {
+                    var d = docs.Where(a =>
+                    {
+                        if (a.StaffId == item.StaffId)
+                            return true;
+                        else return false;
+                    }).FirstOrDefault();
+                    resources.Add(new Resource() { Id = item.StaffId, Description = $"{item.StaffLastName} {item.StaffName} {item.StaffMiddleName}" });
+
+                }
+                return resources;
+            });
+
         }
 
         RelayCommand _runServerCommand;
@@ -190,8 +222,7 @@ namespace Wpf.Server.ViewModels
         }
         private async void ExecuteRunServerCommand(object parameter)
         {
-            List<Appointment> appoinments = null;
-            
+            AppointmentResource AppRes = null;
             try
             {
                 Logs += $"{DateTime.Now,-15} - Server starting...\n";
@@ -214,7 +245,8 @@ namespace Wpf.Server.ViewModels
                 Logs += $"{DateTime.Now,-15} - Server started without errors.\n";
                 Logs += $"{DateTime.Now,-15} - Server listening...\n";
                 byte[] data;
-                appoinments = await GetAppointments();
+                AppRes = new AppointmentResource() { Appointments = await GetAppointments(), Resources = await GetResources() };
+
                 while (isServerShut == false)
                 {
                     //TcpClient cl = listener.AcceptTcpClientAsync();
@@ -222,7 +254,7 @@ namespace Wpf.Server.ViewModels
                     Logs += $"{DateTime.Now,-15} - Server accept ADMINISTRATOR - {client.Client.RemoteEndPoint}\n";
                     var binFormatter = new BinaryFormatter();
                     var mStream = new MemoryStream();
-                    binFormatter.Serialize(mStream, appoinments);
+                    binFormatter.Serialize(mStream, AppRes);
 
                     //This gives you the byte array.
                     data = mStream.ToArray();

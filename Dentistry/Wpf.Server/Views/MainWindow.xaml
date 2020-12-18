@@ -18,38 +18,42 @@
     <Grid Background="LightSteelBlue" DataContext="{Binding Source={StaticResource data}}">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="12*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid Grid.ColumnSpan="2" Margin="0,0,0,1">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="3*"/>
 
             </Grid.ColumnDefinitions>
-            <Button Background="MediumSeaGreen" Grid.Column="0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" FontSize="18" Content="Run" Command="{Binding RunServer_Click}" ></Button>
-            <Button Background="IndianRed" Grid.Column="1" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" FontSize="18" Content="Stop" Command="{Binding StopServer_Click}" ></Button>
-            <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock VerticalAlignment="Center" FontSize="18" Text="IP Address:   "></TextBlock>
-                <TextBox VerticalAlignment="Center" Width="100" FontSize="18" Text="{Binding TxtIPAddress}"></TextBox>
+            <StackPanel Grid.Column="0" Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button Background="MediumSeaGreen" Margin="5,0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" FontSize="18" Content="Run" Command="{Binding RunServer_Click}" ></Button>
+                <Button Background="IndianRed" Margin="5,0" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Width="60" FontSize="18" Content="Stop" Command="{Binding StopServer_Click}" ></Button>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <TextBlock VerticalAlignment="Center" FontSize="18" Text="Port:   "></TextBlock>
-                <TextBox VerticalAlignment="Center" Width="100" FontSize="18" Text="{Binding TxtPort}"></TextBox>
+            
+            <StackPanel Grid.Column="1" Orientation="Horizontal"  HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,0">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" FontSize="18" Text="IP Address:   "></TextBlock>
+                    <TextBox VerticalAlignment="Center" Width="100" FontSize="18" Text="{Binding TxtIPAddress}"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock VerticalAlignment="Center" FontSize="18" Text="Port:   "></TextBlock>
+                    <TextBox VerticalAlignment="Center" Width="100" FontSize="18" Text="{Binding TxtPort}"></TextBox>
+                </StackPanel>
             </StackPanel>
+            
 
         </Grid>
-        <Separator Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Height="1" Margin="0,2,0,0"/>
+        
         <TextBox Background="AliceBlue" Grid.Row="1" VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" AcceptsReturn="True" AllowDrop="True" Text="{Binding Logs}"></TextBox>
-        <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0.5">
+        <Grid Grid.Row="2" Margin="0,0.5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="433*"/>
-                <ColumnDefinition Width="162*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Separator Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Top" Height="3" Margin="0,0,0,0.5"/>
+
             <TextBlock FontWeight="Bold" Foreground="Navy" HorizontalAlignment="Right" VerticalAlignment="Bottom" FontSize="18" Grid.Column="1" Text="{Binding CurrentTime}"></TextBlock>
         </Grid>
     </Grid>

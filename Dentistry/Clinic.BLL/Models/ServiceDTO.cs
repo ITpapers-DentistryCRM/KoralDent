@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinic.BLL.Models
 {
-
+    [Serializable]
     public class ServiceDTO
     {
 

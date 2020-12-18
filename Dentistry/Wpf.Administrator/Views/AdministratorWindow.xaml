@@ -10,7 +10,7 @@
         xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
         xmlns:vm="clr-namespace:Wpf.Administrator.ViewModels"
         xmlns:dialog="clr-namespace:Wpf.Administrator.Infrastructure.DialogService"
-        xmlns:local="clr-namespace:Wpf.Administrator"
+        xmlns:local="clr-namespace:Wpf.Administrator.Views"
         
         mc:Ignorable="d"
         Title="Administrator" Height="700" Width="900">
@@ -32,6 +32,10 @@
             ActiveViewIndex="1"
             CommandBarStyle="Ribbon" FirstDayOfWeek="Monday">
 
+            <dxsch:SchedulerControl.OptionsWindows>
+                <dxsch:OptionsWindows AppointmentWindowType="{x:Type local:AppointmentWindow}" RecurrenceWindowType="{x:Type local:AppointmentWindow}" />
+            </dxsch:SchedulerControl.OptionsWindows>
+            
             <dxsch:DayView x:Name="dayView"
                     Caption="Day View"
                     ResourcesPerPage="5"
@@ -74,7 +78,7 @@
 
             <dxsch:SchedulerControl.DataSource>
                 <dxsch:DataSource AppointmentsSource="{Binding Appointments}"
-                      ResourcesSource="{Binding Calendars}">
+                      ResourcesSource="{Binding Doctors}">
                     <dxsch:DataSource.ResourceMappings>
                         <dxsch:ResourceMappings Caption="Description"
                                     Id="Id" />
@@ -90,7 +94,12 @@
                                        ResourceId="ResourceId"
                                        Start="Start"
                                        Subject="Subject"
-                                       Type="AppointmentType" />
+                                       Type="AppointmentType" >
+                            <dxsch:CustomFieldMapping Mapping="PatientName" Name="PatientName"></dxsch:CustomFieldMapping>
+                            <dxsch:CustomFieldMapping Mapping="PatientPhone" Name="PatientPhone"></dxsch:CustomFieldMapping>
+                            <dxsch:CustomFieldMapping Mapping="PatientEmail" Name="PatientEmail"></dxsch:CustomFieldMapping>
+                            <dxsch:CustomFieldMapping Mapping="Services" Name="Services"></dxsch:CustomFieldMapping>
+                        </dxsch:AppointmentMappings>
                     </dxsch:DataSource.AppointmentMappings>
                 </dxsch:DataSource>
             </dxsch:SchedulerControl.DataSource>

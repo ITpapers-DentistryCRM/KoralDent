@@ -16,10 +16,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Wpf.Administrator.Infrastructure;
 using System.Windows.Input;
 
+
 namespace Wpf.Administrator.ViewModels
 {
     class AdministratorViewModel : INotifyPropertyChanged
     {
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -60,14 +62,14 @@ namespace Wpf.Administrator.ViewModels
                 OnPropertyChanged();
             }
         }
-        private List<Resource> _calendars;
+        private List<Resource> _doctors;
 
-        public List<Resource> Calendars
+        public List<Resource> Doctors
         {
-            get { return _calendars; }
+            get { return _doctors; }
             set
             {
-                _calendars = value;
+                _doctors = value;
                 OnPropertyChanged();
             }
         }
@@ -99,8 +101,6 @@ namespace Wpf.Administrator.ViewModels
         public AdministratorViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
-            Calendars = new List<Resource>();
-            Calendars.Add(new Resource() { Id = 0, Description = "Appoinment" });
 
             IPAddress = ConfigurationManager.AppSettings["IPAddress"];
             Port = int.Parse(ConfigurationManager.AppSettings["Port"]);
@@ -111,12 +111,10 @@ namespace Wpf.Administrator.ViewModels
 
             var binFormatter = new BinaryFormatter();
 
-            Appointments = binFormatter.Deserialize(networkStream) as List<Appointment>;
+            var AppRes = binFormatter.Deserialize(networkStream) as AppointmentResource;
+            Appointments = AppRes.Appointments;
+            Doctors = AppRes.Resources;
 
-            foreach (var item in Appointments)
-            {
-               // dialogService.MessageBoxYesNo(item.Description);
-            }
 
             _timer = new DispatcherTimer(DispatcherPriority.Render);
             _timer.Interval = TimeSpan.FromSeconds(1);

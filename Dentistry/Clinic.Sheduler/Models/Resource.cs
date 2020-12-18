@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clinic.Sheduler.Models
 {
+    [Serializable]
     public class Resource
     {
         public int Id { get; set; }

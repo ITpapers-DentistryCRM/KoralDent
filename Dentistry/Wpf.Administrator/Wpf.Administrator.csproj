@@ -95,9 +95,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\MedicalAppointment.cs" />
     <Compile Include="ViewModels\AdministratorViewModel.cs" />
-    <Compile Include="Views\NewAppoinmentWindow.xaml.cs">
-      <DependentUpon>NewAppoinmentWindow.xaml</DependentUpon>
+    <Compile Include="ViewModels\AppointmentViewModel.cs" />
+    <Compile Include="Views\AppointmentWindow.xaml.cs">
+      <DependentUpon>AppointmentWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AdministratorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -115,7 +117,7 @@
       <DependentUpon>AdministratorWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\NewAppoinmentWindow.xaml">
+    <Page Include="Views\AppointmentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
