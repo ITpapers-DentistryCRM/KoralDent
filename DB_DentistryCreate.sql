@@ -433,13 +433,28 @@ exec AddService 'Fixing the ring with spacer', 'Fixing the ring with spacer', '0
 exec AddService 'Correction, activation of the removable device', 'Correction, activation of the removable device', '02:00:00','200','1'
 
 --=====Registration======================================================================================================================
-
+--Registration(RegistrationDate,RegistrationTime,RegistrationComment,DoctorId,PatientId,RegistrationStatusId)
  exec AddRegistration '2020-12-17','10:00:00','Important patient','1','1','1'
  exec AddRegistration '2020-12-17','14:00:00','discount: -5%','1','2','1'
  exec AddRegistration '2020-12-17','15:00:00','none','4','3','1'
  exec AddRegistration '2020-12-18','09:00:00','Hunko family','2','4','1'
  exec AddRegistration '2020-12-18','13:00:00','discount: -5%','6','5','1'
  exec AddRegistration '2020-12-18','19:00:00','none','4','6','1'
+
+ exec AddRegistration '2020-12-18','8:00:00','Important patient','8','1','1'
+ exec AddRegistration '2020-12-18','12:00:00','discount: -5%','5','2','1'
+ exec AddRegistration '2020-12-19','13:00:00','Hunko family','11','4','1'
+ exec AddRegistration '2020-12-19','15:00:00','discount: -5%','14','5','1'
+ exec AddRegistration '2020-12-19','19:00:00','none','4','6','1'
+ exec AddRegistration '2020-12-20','08:30:00','none','1','3','1'
+
+ exec AddRegistration '2020-12-20','10:00:00','Hunko family','3','4','1'
+ exec AddRegistration '2020-12-20','10:00:00','discount: -5%','13','5','1'
+ exec AddRegistration '2020-12-20','11:00:00','none','8','6','1'
+ exec AddRegistration '2020-12-20','13:00:00','Important patient','9','1','1'
+ exec AddRegistration '2020-12-20','16:00:00','discount: -5%','1','2','1'
+ exec AddRegistration '2020-12-20','20:00:00','none','4','3','1'
+
 
   --=====Registration======================================================================================================================
 
@@ -455,5 +470,27 @@ exec AddService 'Correction, activation of the removable device', 'Correction, a
   exec AddRegistration_Service '6','5'
   exec AddRegistration_Service '6','7'
 
+  exec AddRegistration_Service '7','20'
+  exec AddRegistration_Service '7','15'
+  exec AddRegistration_Service '8','5'
+  exec AddRegistration_Service '9','51'
+  exec AddRegistration_Service '9','22'
+  exec AddRegistration_Service '9','17'
+  exec AddRegistration_Service '9','1'
+  exec AddRegistration_Service '10','50'
+  exec AddRegistration_Service '11','55'
+  exec AddRegistration_Service '12','5'
+  exec AddRegistration_Service '12','7'
 
+  exec AddRegistration_Service '13','20'
+  exec AddRegistration_Service '13','15'
+  exec AddRegistration_Service '13','5'
+  exec AddRegistration_Service '14','51'
+  exec AddRegistration_Service '15','22'
+  exec AddRegistration_Service '15','17'
+  exec AddRegistration_Service '16','1'
+  exec AddRegistration_Service '17','50'
+  exec AddRegistration_Service '18','55'
+  exec AddRegistration_Service '18','5'
+  exec AddRegistration_Service '18','7'
 

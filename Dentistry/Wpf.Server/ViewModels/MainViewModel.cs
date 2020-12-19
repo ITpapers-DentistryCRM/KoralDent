@@ -189,19 +189,14 @@ namespace Wpf.Server.ViewModels
             Autofac.IContainer container = BuildContainer();
             IGenericService<DoctorDTO, int> doctors = container.Resolve<IGenericService<DoctorDTO, int>>();
             IGenericService<StaffDTO, int> staffs = container.Resolve<IGenericService<StaffDTO, int>>();
-            var docs = doctors.GetAll();
+            List<DoctorDTO> docs = doctors.GetAll().ToList();
             var stfs = staffs.GetAll();
             return await Task<List<Resource>>.Factory.StartNew(() => {
                 List<Resource> resources = new List<Resource>();
                 foreach (var item in stfs)
                 {
-                    var d = docs.Where(a =>
-                    {
-                        if (a.StaffId == item.StaffId)
-                            return true;
-                        else return false;
-                    }).FirstOrDefault();
-                    resources.Add(new Resource() { Id = item.StaffId, Description = $"{item.StaffLastName} {item.StaffName} {item.StaffMiddleName}" });
+                    if(docs.Exists(a => a.StaffId == item.StaffId))
+                        resources.Add(new Resource() { Id = item.StaffId, Description = $"{item.StaffLastName} {item.StaffName} {item.StaffMiddleName}" });
 
                 }
                 return resources;
